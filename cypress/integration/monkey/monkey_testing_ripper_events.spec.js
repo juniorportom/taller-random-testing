@@ -58,6 +58,20 @@ function randomSelect() {
     });
 }
 
+// buttons al azar
+function randombutton() {
+    cy.get('button').then($button => {
+        if ($button.length > 0) {
+            var randombutton = $button.get(getRandomInt(0, $button.length));
+            if (!Cypress.dom.isHidden(randombutton)) {
+                cy.wrap(randombutton).click({ force: true });
+                cy.wait(1000);
+            }
+
+        }
+    });
+}
+
 // Disparador de eventos
 function eventExec(monkeysLeft) {
     var monkeysLeft = monkeysLeft;
@@ -65,7 +79,8 @@ function eventExec(monkeysLeft) {
         var events = [
             randomLink,
             randomInputText,
-            randomSelect
+            randomSelect,
+            randombutton
         ]
 
         events[getRandomInt(0, events.length)]();
