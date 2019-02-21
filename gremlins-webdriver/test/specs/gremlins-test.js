@@ -1,6 +1,6 @@
 function loadScript(callback) {
     var s = document.createElement('script');
-    s.src = '../../gremlins.js-master/gremlins.min.js';
+    s.src = 'http://127.0.0.1:8887/dist/gremlins.min.js';
     if (s.addEventListener) {
         s.addEventListener('load', callback, false);
     } else if (s.readyState) {

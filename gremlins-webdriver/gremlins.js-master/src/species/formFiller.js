@@ -35,15 +35,15 @@ define(function(require) {
             'input[type="text"]': fillTextElement,
             'input[type="password"]': fillTextElement,
             'input[type="number"]': fillNumberElement,
-            'select': fillSelect,
-            'input[type="radio"]': fillRadio,
-            'input[type="checkbox"]': fillCheckbox,
+            //'select': fillSelect,
+            //'input[type="radio"]': fillRadio,
+            //'input[type="checkbox"]': fillCheckbox,
             'input[type="email"]': fillEmail,
             'input:not([type])': fillTextElement
         };
 
         function defaultShowAction(element) {
-            if(typeof element.attributes['data-old-border'] === 'undefined') {
+            if (typeof element.attributes['data-old-border'] === 'undefined') {
                 element.attributes['data-old-border'] = element.style.border;
             }
 
@@ -64,11 +64,11 @@ define(function(require) {
          */
         var config = {
             elementMapTypes: defaultMapElements,
-            showAction:      defaultShowAction,
-            canFillElement:  defaultCanFillElement,
-            maxNbTries:      10,
-            logger:          null,
-            randomizer:      null
+            showAction: defaultShowAction,
+            canFillElement: defaultCanFillElement,
+            maxNbTries: 10,
+            logger: null,
+            randomizer: null
         };
 
         /**
@@ -83,7 +83,7 @@ define(function(require) {
             var elementTypes = [];
 
             for (var key in config.elementMapTypes) {
-                if(config.elementMapTypes.hasOwnProperty(key)) {
+                if (config.elementMapTypes.hasOwnProperty(key)) {
                     elementTypes.push(key);
                 }
             }
@@ -127,7 +127,7 @@ define(function(require) {
         }
 
         function fillNumberElement(element) {
-            var number = config.randomizer.character({pool: '0123456789'});
+            var number = config.randomizer.character({ pool: '0123456789' });
             element.value += number;
 
             return number;
