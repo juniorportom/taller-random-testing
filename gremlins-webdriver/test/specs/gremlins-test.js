@@ -28,6 +28,7 @@ describe('Monkey testing with gremlins ', function() {
     it('it should not raise any error', function() {
         browser.url('/');
         browser.click('button=Cerrar');
+        //browser.click('button=Ingresar');
 
         browser.timeoutsAsyncScript(60000);
         browser.executeAsync(loadScript);

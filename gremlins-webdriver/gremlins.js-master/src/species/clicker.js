@@ -70,7 +70,7 @@ define(function(require) {
             clickSignal.style.zIndex = 2000;
             clickSignal.style.border = "3px solid red";
             clickSignal.style['border-radius'] = '50%'; // Chrome
-            clickSignal.style.borderRadius = '50%';     // Mozilla
+            clickSignal.style.borderRadius = '50%'; // Mozilla
             clickSignal.style.width = "40px";
             clickSignal.style.height = "40px";
             clickSignal.style['box-sizing'] = 'border-box';
@@ -78,8 +78,8 @@ define(function(require) {
             clickSignal.style.webkitTransition = 'opacity 1s ease-out';
             clickSignal.style.mozTransition = 'opacity 1s ease-out';
             clickSignal.style.transition = 'opacity 1s ease-out';
-            clickSignal.style.left = (x - 20 ) + 'px';
-            clickSignal.style.top = (y - 20 )+ 'px';
+            clickSignal.style.left = (x - 20) + 'px';
+            clickSignal.style.top = (y - 20) + 'px';
             var element = body.appendChild(clickSignal);
             setTimeout(function() {
                 body.removeChild(element);
@@ -89,21 +89,24 @@ define(function(require) {
             }, 50);
         }
 
-        function defaultCanClick() {
-            return true;
+        function defaultCanClick(event) {
+            if (event.tagName != 'button' || event.tagName != 'a')
+                return false;
+            else
+                return true;
         }
 
         /**
          * @mixin
          */
         var config = {
-            clickTypes:       defaultClickTypes,
+            clickTypes: defaultClickTypes,
             positionSelector: defaultPositionSelector,
-            showAction:       defaultShowAction,
-            canClick:         defaultCanClick,
-            maxNbTries:       10,
-            logger:           null,
-            randomizer:       null
+            showAction: defaultShowAction,
+            canClick: defaultCanClick,
+            maxNbTries: 10,
+            logger: null,
+            randomizer: null
         };
 
         /**
