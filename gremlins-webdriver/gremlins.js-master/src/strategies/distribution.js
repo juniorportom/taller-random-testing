@@ -44,11 +44,13 @@ define(function(require) {
         /**
          * @mixin
          */
+        // Se tienen 5 tipos de gremlins por default, en su orden son:
+        // clicker, toucher, formFiller, scroller, typer
         var config = {
-            distribution: [],  // percentage of each gremlin species ; the sum of all values should equal to 1
-            delay:        10,  // delay in milliseconds between each wave
-            nb:           1000, // number of waves to execute (can be overridden in params)
-            randomizer:   new Chance()
+            distribution: [0.5, 0.2, 0.15, 0.1, 0.05], // percentage of each gremlin species ; the sum of all values should equal to 1
+            delay: 10, // delay in milliseconds between each wave
+            nb: 1000, // number of waves to execute (can be overridden in params)
+            randomizer: new Chance()
         };
 
         var stopped;
@@ -86,7 +88,7 @@ define(function(require) {
             if (len === 0) return [];
             var distribution = [];
             var value = 1 / len;
-            for (var i = 0; i < len ; i++) {
+            for (var i = 0; i < len; i++) {
                 distribution.push(value);
             }
             return distribution;
