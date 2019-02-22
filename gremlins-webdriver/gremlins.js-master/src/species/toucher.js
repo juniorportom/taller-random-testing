@@ -66,15 +66,15 @@ define(function(require) {
                 touchSignal.style.zIndex = 2000;
                 touchSignal.style.background = "red";
                 touchSignal.style['border-radius'] = '50%'; // Chrome
-                touchSignal.style.borderRadius = '50%';     // Mozilla
+                touchSignal.style.borderRadius = '50%'; // Mozilla
                 touchSignal.style.width = "20px";
                 touchSignal.style.height = "20px";
                 touchSignal.style.position = "absolute";
                 touchSignal.style.webkitTransition = 'opacity .5s ease-out';
                 touchSignal.style.mozTransition = 'opacity .5s ease-out';
                 touchSignal.style.transition = 'opacity .5s ease-out';
-                touchSignal.style.left = (touch.x - 10 ) + 'px';
-                touchSignal.style.top = (touch.y - 10 ) + 'px';
+                touchSignal.style.left = (touch.x - 10) + 'px';
+                touchSignal.style.top = (touch.y - 10) + 'px';
 
                 var element = fragment.appendChild(touchSignal);
                 setTimeout(function() {
@@ -87,7 +87,9 @@ define(function(require) {
             document.body.appendChild(fragment);
         }
 
-        function defaultCanTouch() {
+        function defaultCanTouch(element) {
+            if (element.hidden)
+                return false;
             return true;
         }
 
@@ -253,7 +255,7 @@ define(function(require) {
                 var gesture = {
                     distanceX: config.randomizer.integer({ min: -100, max: 200 }),
                     distanceY: config.randomizer.integer({ min: -100, max: 200 }),
-                    duration:  config.randomizer.integer({ min: 20, max: 500 })
+                    duration: config.randomizer.integer({ min: 20, max: 500 })
                 };
                 var touches = getTouches(position, 1, gesture.radius);
 
@@ -264,14 +266,14 @@ define(function(require) {
 
             // multitouch gesture, could be a drag, swipe, pinch and rotate, with 2 or more points
             multitouch: function multitouch(position, element, done) {
-                var points = config.randomizer.integer({ min: 2, max: config.maxTouches});
+                var points = config.randomizer.integer({ min: 2, max: config.maxTouches });
                 var gesture = {
-                    scale:     config.randomizer.floating({ min: 0, max: 2 }),
-                    rotation:  config.randomizer.natural({ min: -100, max: 100 }),
-                    radius:    config.randomizer.integer({ min: 50, max: 200 }),
+                    scale: config.randomizer.floating({ min: 0, max: 2 }),
+                    rotation: config.randomizer.natural({ min: -100, max: 100 }),
+                    radius: config.randomizer.integer({ min: 50, max: 200 }),
                     distanceX: config.randomizer.integer({ min: -20, max: 20 }),
                     distanceY: config.randomizer.integer({ min: -20, max: 20 }),
-                    duration:  config.randomizer.integer({ min: 100, max: 1500 })
+                    duration: config.randomizer.integer({ min: 100, max: 1500 })
                 };
                 var touches = getTouches(position, points, gesture.radius);
 
@@ -301,7 +303,7 @@ define(function(require) {
                 posY = position[1];
                 targetElement = document.elementFromPoint(posX, posY);
                 nbTries++;
-                if(nbTries > config.maxNbTries) return;
+                if (nbTries > config.maxNbTries) return;
             } while (!targetElement || !config.canTouch(targetElement));
 
             var touchType = config.randomizer.pick(config.touchTypes);

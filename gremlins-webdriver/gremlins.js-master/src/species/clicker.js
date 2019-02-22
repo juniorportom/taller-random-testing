@@ -89,11 +89,10 @@ define(function(require) {
             }, 50);
         }
 
-        function defaultCanClick(event) {
-            if (event.tagName != 'button' || event.tagName != 'a')
+        function defaultCanClick(element) {
+            if (element.hidden && (element.tagName != 'button' || element.tagName != 'a'))
                 return false;
-            else
-                return true;
+            return true;
         }
 
         /**

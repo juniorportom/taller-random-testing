@@ -55,7 +55,9 @@ define(function(require) {
             }, 500);
         }
 
-        function defaultCanFillElement() {
+        function defaultCanFillElement(element) {
+            if (element.hidden)
+                return false;
             return true;
         }
 
